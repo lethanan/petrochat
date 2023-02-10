@@ -1,0 +1,117 @@
+
+body{
+	background-color:#111;
+	color:#ccc;
+	margin:0;
+}
+#container {
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+}
+#header {
+    display: flex;
+    justify-content: space-between;
+	height:32px;
+	background:#222;
+	color:#999;
+	padding:2px;
+}
+#header h1, #header h3{
+	margin:0;
+}
+.title{
+	color:#eee;
+}
+#main {
+    display: flex;	
+    overflow: hidden;
+}
+#chat{
+	display:flex;
+	flex-flow:column;
+	width:100%;
+}
+#content{
+	width:100%;
+}
+#channels{
+	background:#080808;
+}
+.channel{
+	font-size:22px;
+	color:#aaa;
+	padding:10px;
+	border:1px solid #000;
+	background:#151515;
+	cursor:pointer;
+}
+.channel.active{
+	background:#333;
+}
+#messages {
+    padding: 6px;
+    background: #000;
+    color: #ddd;
+    overflow-y: scroll;
+}
+.message {
+    padding: 3px;
+    border-top: 1px solid #262626;
+    font-size: 16px;
+}
+.username {
+    font-weight: bold;
+}
+.username:after{
+	content:":";
+	margin-right:2px;
+}
+#form form{
+	display:flex;
+}
+#input{
+	width:100%;
+	height:2.5em;
+    background: #aaa;
+}
+#submit {
+    border: none;
+    cursor: pointer;
+    padding: 0 10px;
+    background: #3c3c3c;
+    color: #a3a3a3;
+    font-weight: bold;
+    font-size: 18px;
+}
+#submit:hover{
+	color:#fff;
+}
+
+
+/* Homepage */
+body.home {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-flow: column wrap;
+    height: 100vh;
+}
+
+#center {
+	text-align:center;
+    padding: 38px 50px 50px 50px;
+    background: #222;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.error{
+	color:red;
+	background:#000;
+}
+.error.active{
+	display:block;
+}
+.hidden{
+	display:none !important;;
+}
