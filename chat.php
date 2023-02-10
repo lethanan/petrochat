@@ -53,7 +53,7 @@ $users = array();
 	</right>
 </div>
 <div id="errors">
-	<h3 id="error-existing-user" class="error hidden">Username Exists</h3>
+	<h3 id="error-sending-message" class="error hidden">Message Failed to Deliver</h3>
 </div>
 <div id="main">
 	<!--
@@ -67,7 +67,7 @@ $users = array();
 	<div id="chat">
 		<div id="messages">
 			<?php 
-			$selMessages = $db->prepare("SELECT content,userid FROM messages WHERE serverid=? ORDER BY id DESC LIMIT 20");
+			$selMessages = $db->prepare("SELECT reorder.* FROM (SELECT id,content,userid FROM messages WHERE serverid=? ORDER BY id DESC LIMIT 20) AS reorder ORDER BY reorder.id ASC");
 			$selMessages->execute(array($serverid));
 			while($row = $selMessages->fetch(PDO::FETCH_ASSOC)){ 
 				$row['content'] = cleanString($row['content']);
@@ -78,9 +78,9 @@ $users = array();
 		</div>
 		<?php if($selUsers->rowCount()>0){ ?>
 		<div id="form">
-			<form action="stuff/createMessage.php" type="post">
+			<form action="stuff/createMessage.php" type="post" onsubmit="return sendMessage();">
 				<input id="content" name="content" type="text" maxlength="250" autocomplete="off">
-				<input id="server" name="serverid" type="hidden" value="<?php echo $serverid;?>">
+				<input id="serverid" name="serverid" type="hidden" value="<?php echo $serverid;?>">
 				<input id="userid" name="userid" type="hidden" value="<?php echo current($users)['id'];?>">
 				<button id="submit" name="submitMessage">></button>
 			</form>

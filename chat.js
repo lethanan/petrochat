@@ -4,8 +4,24 @@ function getMessages(){
 }
 
 // Message Submit
-function sendMessage(){
+function sendMessage(){	
+	// data
+	const contentField = document.getElementById('content');
+	const content = encodeURI(contentField.value);	
+	const userid = encodeURI(document.getElementById('userid').value);
+	const serverid = encodeURI(document.getElementById('serverid').value);
+	// request
+	const request = new XMLHttpRequest();
+	request.onreadystatechange = () => {
+		console.log(request.responseText)
+	};
+	request.open("POST", "stuff/createMessage.php", true);
+	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	request.send("userid="+userid+'&serverid='+serverid+'&content='+content);
 	
+	// clear field
+	contentField.value = '';
+	return false;
 }
 
 // User Dropdown
